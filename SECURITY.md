@@ -5,11 +5,11 @@ post_slug: security-policy
 microsoft_alias: pichuang
 featured_image: https://learn.microsoft.com/azure/media/index/azure-security/azure-security.png
 categories:
-	- security
+    - security
 tags:
-	- vulnerability-management
-	- disclosure
-	- support
+    - vulnerability-management
+    - disclosure
+    - support
 ai_note: true
 summary: 描述專案支援周期與安全性漏洞通報流程，以確保修補作業可預期。
 post_date: 2025-11-25
