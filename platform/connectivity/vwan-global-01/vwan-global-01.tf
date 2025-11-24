@@ -7,7 +7,7 @@
 locals {
   vwan_global_01 = {
     name     = "vwan-global-01"
-    location = "japaneast"
+    location = "japanwest"
   }
 }
 
