@@ -5,5 +5,7 @@
 - [x] Virtual WAN
 - [x] Virtaul Hub
 - [ ] Azure Firewall Policy
-- [ ] Azure Private DNS Resolver
+- [ ] Virtual Network
+  - [ ] Azure Private DNS Resolver
+- [x] Azure Private DNS Zones
 - [ ] DDoS Protection

@@ -5,9 +5,8 @@
 
 locals {
   vhub_azure_jpw_prod_01 = {
-    name     = "azure-jpw-prod-01"
-    location = "japanwest"
-    #TODO 需要更換正式的位址區段
+    name                 = "azure-jpw-prod-01"
+    location             = "japanwest"
     address_prefix       = "10.227.0.0/23" # 正式需要使用 /23
     vhub_capacity        = 2               # 2 ~ 50
     ergw_scale_units     = 1               # 1 ~ 10
