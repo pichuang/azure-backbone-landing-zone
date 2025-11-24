@@ -28,3 +28,9 @@ sh ./0-terragrunt-local-dev-plan.sh
 ```bash
 sh ./1-terragrunt-local-dev-deploy.sh
 ```
+
+4. 如果測試完, 要進行清理的話, 請下這個指令, 他會把 `全部` 資源移除
+
+```bash
+sh ./2-terragrunt-local-dev-destroy.sh
+```
