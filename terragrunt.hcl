@@ -72,6 +72,9 @@ provider "azurerm" {
     resource_group {
       prevent_deletion_if_contains_resources = false
     }
+    key_vault {
+      recover_soft_deleted_key_vaults = false
+    }
   }
   storage_use_azuread = true
   # 動態讀取子目錄中的 Subscription ID

@@ -42,7 +42,7 @@ module "key_erd_taipei_01" {
 
   location                        = local.key_connectivity_jpw_01.location
   name                            = "key-erd-taipei-01"
-  resource_group_name             = local.key_connectivity_jpw_01.name
+  resource_group_name             = azurerm_resource_group.rg_key_connectivity_jpw_01.name
   tenant_id                       = var.tenant_id
   sku_name                        = "premium"
   enable_telemetry                = false
