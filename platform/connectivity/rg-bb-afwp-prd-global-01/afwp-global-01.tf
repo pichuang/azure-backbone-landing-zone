@@ -3,9 +3,9 @@
 
 locals {
   afwp_global_01 = {
-    name                  = "afwp-global-01"
-    log_sku               = "PerGB2018"
-    log_retention_in_days = 30 # 30 ~ 730
+    name                               = "afwp-global-01"
+    log_sku                            = "PerGB2018"
+    log_retention_in_days              = 30 # 30 ~ 730
     default_log_analytics_workspace_id = azurerm_log_analytics_workspace.log_soc_prd_jpw_01.id
   }
 }

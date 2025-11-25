@@ -12,6 +12,7 @@ locals {
     ergw_scale_units     = 1               # 1 ~ 10
     azfw_public_ip_count = 1               # 1 ~ 10
     zones                = ["1", "2", "3"]
+    dnspr_inbound_ip     = "10.227.2.4"
   }
 }
 
@@ -54,21 +55,19 @@ resource "azurerm_firewall" "afw_azure_jpw_prod_01" {
   resource_group_name = azurerm_resource_group.rg_vwan_prd_global_01.name
   sku_name            = "AZFW_Hub"
   sku_tier            = "Premium"
+  private_ip_ranges   = "IANAPrivateRanges"
 
   virtual_hub {
     virtual_hub_id  = azurerm_virtual_hub.vhub_azure_jpw_prod_01.id
     public_ip_count = local.vhub_azure_jpw_prod_01.azfw_public_ip_count
   }
 
-  zones = local.vhub_azure_jpw_prod_01.zones
-
-  # TODO
-  # firewall_policy_id
-  # ip_configuration
-  # dns_servers
-  # dns_proxy_enabled
-  # private_ip_ranges
-  # management_ip_configuration
+  zones              = local.vhub_azure_jpw_prod_01.zones
+  firewall_policy_id = azurerm_firewall_policy.afwp_azure_jpw_prod_01.id
+  dns_proxy_enabled  = true
+  dns_servers = [
+    "${local.vhub_azure_jpw_prod_01.dnspr_inbound_ip}"
+  ]
 
   tags = local.tags_connectivity
 }

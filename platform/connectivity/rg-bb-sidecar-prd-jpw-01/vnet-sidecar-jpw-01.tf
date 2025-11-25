@@ -3,7 +3,7 @@ locals {
     name           = "sidecar-jpw-01"
     location       = "japanwest"
     address_prefix = "10.227.2.0/24"
-    azfw_ip = "10.227.2.1"
+    azfw_ip        = "10.227.2.1"
   }
 }
 

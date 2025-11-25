@@ -3,9 +3,9 @@
 
 locals {
   afwp_azure_jpw_prod_01 = {
-    name                  = "afwp-azure-jpw-prod-01"
-    log_sku               = "PerGB2018"
-    log_retention_in_days = 30 # 30 ~ 730
+    name                               = "afwp-azure-jpw-prod-01"
+    log_sku                            = "PerGB2018"
+    log_retention_in_days              = 30 # 30 ~ 730
     default_log_analytics_workspace_id = azurerm_log_analytics_workspace.log_soc_prd_jpw_01.id
     # 要寫當前區域的 Private DNS Resolver Inbound IP
     dnspr_inbound_ip = "10.227.2.4"
