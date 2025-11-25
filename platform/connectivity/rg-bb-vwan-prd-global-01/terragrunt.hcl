@@ -16,6 +16,7 @@ dependency "security_log_soc_prd_jpw_01" {
     log_soc_prd_jpw_01_workspace_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mock-rg/providers/Microsoft.OperationalInsights/workspaces/mock-log-soc-prd-jpw-01"
   }
   mock_outputs_allowed_terraform_commands = ["init", "validate", "plan"]
+  mock_outputs_merge_with_state          = true
 }
 
 dependency "firewall_policies_id" {
@@ -26,6 +27,7 @@ dependency "firewall_policies_id" {
     afwp_azure_jpw_prod_01_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mock-rg/providers/Microsoft.Network/firewallPolicies/mock-afwp-azure-jpw-prod-01"
   }
   mock_outputs_allowed_terraform_commands = ["init", "validate", "plan"]
+  mock_outputs_merge_with_state          = true
 }
 
 
