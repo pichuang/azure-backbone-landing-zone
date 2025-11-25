@@ -1,6 +1,8 @@
 name: trivy-iac-scan
 on:
   pull_request:
+  workflow_dispatch:
+
 jobs:
   trivy:
     name: Trivy IaC scan
