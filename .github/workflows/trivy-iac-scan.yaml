@@ -1,0 +1,36 @@
+name: trivy-iac-scan
+on:
+  pull_request:
+jobs:
+  trivy:
+    name: Trivy IaC scan
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
+      security-events: write
+
+    steps:
+      # https://github.com/actions/checkout
+      - name: Clone repo
+        uses: actions/checkout@v6
+
+      # https://github.com/aquasecurity/trivy-action?tab=readme-ov-file#using-trivy-to-scan-infrastructure-as-code
+      - name: Run Trivy vulnerability scanner in IaC mode
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          scan-type: config
+          hide-progress: true
+          ignore-unfixed: true
+          format: sarif
+          output: trivy.sarif
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          exit-code: 0
+
+      # https://github.com/github/codeql-action/tree/main
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: trivy.sarif
