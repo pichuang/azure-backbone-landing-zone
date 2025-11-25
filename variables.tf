@@ -1,4 +1,4 @@
 variable "subscription_id" {
-  description = "The Azure Subscription ID"
-  type        = string
+  description = "請填寫 Azure 訂閱 ID"
+  type = string
 }
