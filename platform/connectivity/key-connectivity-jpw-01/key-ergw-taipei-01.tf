@@ -35,16 +35,24 @@ data "azurerm_subnet" "snet_private_endpoints_jpw" {
   virtual_network_name = local.vnet_connectivity_jpw_01.virtual_network_name
 }
 
+# https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest
 module "key_erd_taipei_01" {
   source  = "Azure/avm-res-keyvault-vault/azurerm"
   version = "0.10.2"
 
-  location                      = local.key_connectivity_jpw_01.location
-  name                          = "key-erd-taipei-01"
-  resource_group_name           = local.key_connectivity_jpw_01.name
-  tenant_id                     = var.tenant_id
-  enable_telemetry              = false
-  public_network_access_enabled = false
+  location                        = local.key_connectivity_jpw_01.location
+  name                            = "key-erd-taipei-01"
+  resource_group_name             = local.key_connectivity_jpw_01.name
+  tenant_id                       = var.tenant_id
+  sku_name                        = "premium"
+  enable_telemetry                = false
+  public_network_access_enabled   = false
+  enabled_for_deployment          = false
+  enabled_for_disk_encryption     = false
+  enabled_for_template_deployment = false
+  legacy_access_policies_enabled  = false
+  purge_protection_enabled        = true
+  soft_delete_retention_days      = 7
 
   private_endpoints = {
     primary = {

@@ -23,3 +23,7 @@ platform/connectivity/
 ├── vwan-global-01/
 ├── peering-devsecops/ # 獨立模組
 ```
+
+## Q3: 為何使用 terragrunt 而不使用原生 terraform?
+
+A3: 主要要控制爆炸半徑, 不要讓一份超大型的 terraform state 管全部的服務
