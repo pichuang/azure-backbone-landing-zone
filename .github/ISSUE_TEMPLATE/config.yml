@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GitHub Community Support
+    url: https://github.community/
+    about: 對於一般性的 GitHub 使用問題，請前往社群討論。
+  - name: 安全性漏洞回報 (Security)
+    url: https://github.com/pichuang/
+    about: 如果是安全性漏洞，請勿開啟 Issue，請依循安全性政策回報。

@@ -1,0 +1,42 @@
+name: 🚀 Feature Request (功能請求)
+description: 建議一個新功能或改善現有功能
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感謝您的建議！請告訴我們這個功能如何能幫助到您。
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 您的建議是否與某個問題有關？
+      description: 請描述導致您提出此建議的痛點
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 建議的解決方案
+      description: 請描述您希望看到的解決方案或功能運作方式。
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 您考慮過的其他替代方案
+      description: 是否有其他替代方案？為什麼它們不適合？
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 優先級建議
+      options:
+        - Low (錦上添花)
+        - Medium (重要但不緊急)
+        - High (急需此功能)
+    validations:
+      required: false

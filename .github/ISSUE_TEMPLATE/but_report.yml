@@ -1,0 +1,79 @@
+name: 🐛 Bug Report (錯誤回報)
+description: 建立一個錯誤回報來協助我們改善專案
+title: "[Bug]: "
+labels: ["bug", "triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感謝您花時間回報問題！請儘可能詳細填寫以下資訊。
+
+  - type: input
+    id: contact
+    attributes:
+      label: 聯絡方式
+      description: 請留下您的 Email 或相關聯絡方式以便我們跟進。
+      placeholder: user@example.com
+    validations:
+      required: false
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 發生了什麼事？ (Current Behavior)
+      description: 請描述您遇到的錯誤狀況。
+      placeholder: 當我點擊...然後發生了...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 重現步驟 (Steps to Reproduce)
+      description: 請列出重現此問題的具體步驟。
+      placeholder: |
+        1. 前往 '...'
+        2. 點擊 '....'
+        3. 捲動到 '....'
+        4. 看見錯誤
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: 預期行為 (Expected Behavior)
+      description: 請描述您原本預期會發生什麼事。
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: 執行環境 (Environment)
+      description: 這是發生在哪個環境？
+      options:
+        - Production
+        - Staging / UAT
+        - Development / Local
+        - Other (please specify in description)
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 相關 Log 或截圖
+      description: 請貼上相關的錯誤 Log 或上傳截圖。
+      render: shell
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 確認事項
+      options:
+        - label: 我已經搜尋過現有的 Issues，確定沒有重複的回報。
+          required: true
+        - label: 我已閱讀並同意專案的 Code of Conduct。
+          required: true
