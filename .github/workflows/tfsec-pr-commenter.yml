@@ -29,9 +29,9 @@ jobs:
           tfsec_formats: sarif,checkstyle
           github_token: ${{ github.token }}
 
-      # https://github.com/github/codeql-action/tree/main
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v4
-        with:
-          # Path to SARIF file relative to the root of the repository
-          sarif_file: results.sarif
+      # # https://github.com/github/codeql-action/tree/main
+      # - name: Upload SARIF file
+      #   uses: github/codeql-action/upload-sarif@v4
+      #   with:
+      #     # Path to SARIF file relative to the root of the repository
+      #     sarif_file: results.sarif
