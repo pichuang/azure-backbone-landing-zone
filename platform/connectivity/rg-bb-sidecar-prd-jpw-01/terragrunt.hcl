@@ -15,7 +15,7 @@ dependency "security_log_soc_prd_jpw_01" {
   mock_outputs = {
     log_soc_prd_jpw_01_workspace_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mock-rg/providers/Microsoft.OperationalInsights/workspaces/mock-log-soc-prd-jpw-01"
   }
-  mock_outputs_allowed_terraform_commands = ["validate", "plan"]
+  mock_outputs_allowed_terraform_commands = ["output", "validate", "plan"]
 }
 
 inputs = {

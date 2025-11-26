@@ -4,8 +4,10 @@
 
 - [x] Virtual WAN
 - [x] Virtaul Hub
-- [ ] Azure Firewall Policy
+- [x] Azure Firewall Policy
 - [ ] Virtual Network
   - [ ] Azure Private DNS Resolver
 - [x] Azure Private DNS Zones
-- [ ] DDoS Protection
+- [x] DDoS Protection
+- [x] Azure Bastion
+  - [ ] SAS URL

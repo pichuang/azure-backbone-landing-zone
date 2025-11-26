@@ -8,9 +8,7 @@ variable "subscription_id" {
   type        = string
 }
 
-variable "vnet_sidecar_jpw_01_id" {
-  description = "請填寫 Sidecar JPW VNet ID"
+variable "log_soc_prd_jpw_01_workspace_id" {
+  description = "log-soc-prd-jpw-01 Log Analytics Workspace Resource ID"
   type        = string
 }
-
-## 需要填寫每個區域的 sidecar vnet id

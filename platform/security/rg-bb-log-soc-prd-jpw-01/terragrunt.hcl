@@ -7,6 +7,7 @@ terraform {
   source = "."
 }
 
+# 這邊要改成要使用的 Subscription ID
 inputs = {
-  subscription_id  = include.root.locals.merged_global_vars.subscription_connectivity_id
+  subscription_id  = include.root.locals.merged_global_vars.subscription_security_id
 }
