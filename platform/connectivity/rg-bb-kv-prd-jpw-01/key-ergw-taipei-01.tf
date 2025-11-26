@@ -26,7 +26,7 @@ module "key_erd_taipei_01" {
 
   private_endpoints = {
     primary = {
-      private_dns_zone_resource_ids = [var.private_dns_zone_id]
+      private_dns_zone_resource_ids = [var.privatelink_vaultcore_azure_net_id]
       subnet_resource_id            = var.private_endpoint_subnet_id
     }
   }

@@ -13,7 +13,7 @@ variable "tenant_id" {
   type        = string
 }
 
-variable "private_dns_zone_id" {
+variable "privatelink_vaultcore_azure_net_id" {
   description = "Resource ID for privatelink.vaultcore.azure.net private DNS zone"
   type        = string
 }
