@@ -30,8 +30,3 @@ resource "azurerm_log_analytics_workspace" "log_soc_prd_jpw_01" {
   internet_query_enabled                  = false
   immediate_data_purge_on_30_days_enabled = false
 }
-
-output "log_soc_prd_jpw_01_workspace_id" {
-  description = "Log Analytics Workspace ID for log-soc-prd-jpw-01"
-  value       = azurerm_log_analytics_workspace.log_soc_prd_jpw_01.id
-}
