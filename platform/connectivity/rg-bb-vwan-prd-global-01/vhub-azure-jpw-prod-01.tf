@@ -72,6 +72,7 @@ resource "azurerm_firewall" "afw_azure_jpw_prod_01" {
   sku_name            = "AZFW_Hub"
   sku_tier            = "Premium"
   private_ip_ranges   = ["IANAPrivateRanges"]
+  threat_intel_mode = "Deny"
 
   virtual_hub {
     virtual_hub_id  = azurerm_virtual_hub.vhub_azure_jpw_prod_01.id
