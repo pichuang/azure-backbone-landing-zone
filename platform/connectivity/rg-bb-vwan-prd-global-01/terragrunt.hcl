@@ -30,9 +30,18 @@ dependency "firewall_policies_id" {
   mock_outputs_merge_strategy_with_state     = "shallow"
 }
 
+dependency "vnet_sidecar_jpw_01_id" {
+  config_path = "../rg-bb-sidecar-prd-jpw-01"
+  mock_outputs = {
+    vnet_sidecar_jpw_01_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mock-rg/providers/Microsoft.Network/virtualNetworks/vnet-sidecar-jpw-01"
+  }
+  mock_outputs_allowed_terraform_commands    = ["init", "output", "validate", "plan"]
+  mock_outputs_merge_strategy_with_state     = "shallow"
+}
 
 inputs = {
   subscription_id  = include.root.locals.merged_global_vars.subscription_connectivity_id
   log_soc_prd_jpw_01_workspace_id = dependency.security_log_soc_prd_jpw_01.outputs.log_soc_prd_jpw_01_workspace_id
   afwp_azure_jpw_prod_01_id       = dependency.firewall_policies_id.outputs.afwp_azure_jpw_prod_01_id
+  vnet_sidecar_jpw_01_id          = dependency.vnet_sidecar_jpw_01_id.outputs.vnet_sidecar_jpw_01_id
 }
