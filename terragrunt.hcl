@@ -80,6 +80,7 @@ provider "azurerm" {
   storage_use_azuread = true
   # 動態讀取子目錄中的 Subscription ID
   subscription_id = var.subscription_id
+  use_msi = true
 }
 EOF
 }

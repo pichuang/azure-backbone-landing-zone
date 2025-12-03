@@ -2,6 +2,8 @@
 
 # 使用 Local State
 export TG_LOCAL_STATE=true
+export ARM_USE_MSI=true
+export ARM_CLIENT_ID=$(mi_client_id)
 
 # 格式化 Terraform 配置文件
 terragrunt run -- fmt --recursive

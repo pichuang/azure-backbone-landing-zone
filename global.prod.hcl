@@ -15,9 +15,9 @@ locals {
 
   # 訂閱 ID 列表
   # 此為正式環境用的 Subscription ID 勿改
-  subscription_connectivity_id = ""
-  subscription_security_id     = ""
-  subscription_identity_id     = ""
-  subscription_management_id   = ""
-  subscription_devsecops_id    = ""
+  subscription_connectivity_id = "#{connectivity_id}#"
+  subscription_security_id     = "#{security_id}#"
+  subscription_identity_id     = "#{identity_id}#"
+  subscription_management_id   = "#{management_id}#"
+  subscription_devsecops_id    = "#{devsecops_id}#"
 }
