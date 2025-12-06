@@ -118,10 +118,17 @@ module "nsg_azurebastionsubnet" {
   security_rules      = local.nsg_rules_azurebastionsubnet
 
   diagnostic_settings = {
-    name                           = "diag-logs"
-    log_groups                     = ["allLogs"]
-    metric_categories              = ["AllMetrics"]
-    log_analytics_destination_type = "Dedicated"
-    workspace_resource_id          = local.sidecar_jpw_01.log_analytics_workspace_id
+    diag_logs = {
+      name                           = "diag-logs"
+      log_groups                     = ["allLogs"]
+      log_analytics_destination_type = "Dedicated"
+      workspace_resource_id          = local.sidecar_jpw_01.log_analytics_workspace_id
+    }
+    diag_metrics = {
+      name                           = "diag-metrics"
+      metric_categories              = ["AllMetrics"]
+      log_analytics_destination_type = "Dedicated"
+      workspace_resource_id          = local.sidecar_jpw_01.log_analytics_workspace_id
+    }
   }
 }
