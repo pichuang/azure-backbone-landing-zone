@@ -3,8 +3,8 @@
 locals {
   nsg_rules_azurebastionsubnet = {
     # Inbound
-    "in-allow-gatwaymanager" = {
-      name                       = "in-allow-gatwaymanager"
+    "in-allow-gatewaymanager" = {
+      name                       = "in-allow-gatewaymanager"
       priority                   = 100
       direction                  = "Inbound"
       access                     = "Allow"
