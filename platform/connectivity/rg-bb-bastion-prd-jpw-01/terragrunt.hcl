@@ -29,4 +29,5 @@ inputs = {
   subscription_id                = include.root.locals.merged_global_vars.subscription_connectivity_id
   snet_azurebastionsubnet_id     = dependency.vnet_sidecar_prd_jpw_01.outputs.snet_azurebastionsubnet_id
   log_analytics_workspace_id      = dependency.security_log_soc_prd_jpw_01.outputs.log_soc_prd_jpw_01_workspace_id
+  primary_location                = var.primary_location
 }
