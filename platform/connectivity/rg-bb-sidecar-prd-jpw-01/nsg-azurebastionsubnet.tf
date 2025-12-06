@@ -2,9 +2,7 @@
 # https://learn.microsoft.com/zh-tw/azure/bastion/bastion-nsg
 locals {
   nsg_rules_azurebastionsubnet = {
-    #
     # Inbound
-    #
     "in-allow-gatewaymanager" = {
       name                       = "in-allow-gatewaymanager"
       priority                   = 100
@@ -55,23 +53,22 @@ locals {
     }
     "in-deny-all-others" = {
       name                       = "in-deny-all-others"
-      access                     = "Deny"
-      destination_address_prefix = "*"
-      destination_port_range     = "*"
-      direction                  = "Inbound"
       priority                   = 4096
-      protocol                   = "*"
+      direction                  = "Inbound"
+      access                     = "Deny"
       source_address_prefix      = "*"
       source_port_range          = "*"
+      destination_address_prefix = "*"
+      destination_port_range     = "*"
+      protocol                   = "*"
       description                = "拒絕所有其他 inbound traffic"
     }
-    #
+
     # Outbound
-    #
     "out-allow-jumperbox" = {
       name                       = "out-allow-jumperbox"
       access                     = "Allow"
-      source_address_prefix      = "*"
+      source_address_prefix      = "VirtualNetwork"
       source_port_range          = "*"
       destination_address_prefix = "10.227.2.64/28" # snet-jumperbox
       destination_port_ranges    = ["22", "3389"]
@@ -80,43 +77,54 @@ locals {
       protocol                   = "Tcp"
       description                = "允許連線到 Jumperbox 子網路的 SSH 和 RDP 流量"
     }
-    "out-allow-azurecloud" = {
-      name                       = "out-allow-azurecloud"
+    "out-allow-internet-web" = {
+      name                       = "out-allow-internet-web"
       access                     = "Allow"
-      destination_address_prefix = "AzureCloud.japanwest" # AzureCloud.<location>
-      destination_port_ranges    = ["443"]
-      direction                  = "Outbound"
-      priority                   = 300
-      protocol                   = "Tcp"
-      source_address_prefix      = "*"
+      source_address_prefix      = "VirtualNetwork"
       source_port_range          = "*"
-      description                = "允許連線至 AzureCloud.${local.rg_vnet_sidecar_jpw_01.location} 進行更新和修補程式下載"
+      destination_address_prefix = "Internet"
+      destination_port_ranges    = ["80", "443"]
+      direction                  = "Outbound"
+      priority                   = 150
+      protocol                   = "Tcp"
+      description                = "允許 Bastion 對 Internet 的必要 80/443 流量"
     }
     "out-allow-bastionhostcommunication" = {
       name                       = "out-allow-bastionhostcommunication"
       access                     = "Allow"
+      source_address_prefix      = "VirtualNetwork"
+      source_port_range          = "*"
       destination_address_prefix = "VirtualNetwork"
       destination_port_ranges    = ["8080", "5701"]
       direction                  = "Outbound"
       priority                   = 200
       protocol                   = "Tcp"
-      source_address_prefix      = "*"
-      source_port_range          = "*"
       description                = "允許 Azure Bastion Host 之間的 outbound 通訊"
+    }
+    "out-allow-azurecloud" = {
+      name                       = "out-allow-azurecloud"
+      access                     = "Allow"
+      source_address_prefix      = "VirtualNetwork"
+      source_port_range          = "*"
+      destination_address_prefix = "AzureCloud"
+      destination_port_ranges    = ["443"]
+      direction                  = "Outbound"
+      priority                   = 300
+      protocol                   = "Tcp"
+      description                = "允許連線至 AzureCloud 進行更新和修補程式下載"
     }
     "out-deny-all-others" = {
       name                       = "out-deny-all-others"
       access                     = "Deny"
+      source_address_prefix      = "*"
+      source_port_range          = "*"
       destination_address_prefix = "*"
       destination_port_range     = "*"
       direction                  = "Outbound"
       priority                   = 4096
       protocol                   = "*"
-      source_address_prefix      = "*"
-      source_port_range          = "*"
       description                = "拒絕所有其他 outbound traffic"
     }
-
   }
 }
 
