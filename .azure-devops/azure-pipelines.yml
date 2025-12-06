@@ -15,28 +15,29 @@ variables:
 - group: global.prod
 
 steps:
-- task: "TerraformInstaller@2"
-  displayName: 'Install Terraform'
-  inputs:
-    terraformVersion: '1.13.5'
+  # https://github.com/microsoft/azure-pipelines-terraform
+  - task: "TerraformInstaller@1"
+    displayName: 'Install Terraform'
+    inputs:
+      terraformVersion: '1.13.5'
 
-- script: terraform -version
-  displayName: 'Show terraform version'
+  - script: terraform -version
+    displayName: 'Show terraform version'
 
-- script: wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.93.11/terragrunt_linux_amd64
-  displayName: 'Download terragrunt binary'
+  - script: wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.93.11/terragrunt_linux_amd64
+    displayName: 'Download terragrunt binary'
 
-- script: sudo install terragrunt_linux_amd64 /usr/local/bin/terragrunt && rm terragrunt_linux_amd64
-  displayName: 'Install terragrunt'
+  - script: sudo install terragrunt_linux_amd64 /usr/local/bin/terragrunt && rm terragrunt_linux_amd64
+    displayName: 'Install terragrunt'
 
-- script: terragrunt -v
-  displayName: 'Show terragrunt version'
+  - script: terragrunt -v
+    displayName: 'Show terragrunt version'
 
-- task: replacetokens@6
-  displayName: 'Replace tokens in global.prod.hcl'
-  inputs:
-    root: '$(System.DefaultWorkingDirectory)'
-    sources: 'global.prod.hcl'
+  - task: replacetokens@6
+    displayName: 'Replace tokens in global.prod.hcl'
+    inputs:
+      root: '$(System.DefaultWorkingDirectory)'
+      sources: 'global.prod.hcl'
 
-- script: bash 0-terragrunt-local-dev-plan.sh
-  displayName: 'Run terragrunt local dev plan'
+  - script: bash 0-terragrunt-local-dev-plan.sh
+    displayName: 'Run terragrunt local dev plan'
