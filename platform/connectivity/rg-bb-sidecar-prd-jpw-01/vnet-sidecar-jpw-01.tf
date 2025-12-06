@@ -106,6 +106,14 @@ module "vnet_sidecar_jpw_01" {
       private_link_service_network_policies_enabled = true
     }
 
+    snet_mgmt = {
+      name                                          = "snet-mgmt"
+      address_prefixes                              = ["10.227.2.64/28"]
+      default_outbound_access_enabled               = false
+      private_endpoint_network_policies             = "Enabled"
+      private_link_service_network_policies_enabled = true
+    }
+
     snet_azurebastionsubnet = {
       name                                          = "AzureBastionSubnet"
       address_prefixes                              = ["10.227.3.0/24"]
