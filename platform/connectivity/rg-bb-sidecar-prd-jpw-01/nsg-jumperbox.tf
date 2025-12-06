@@ -40,7 +40,7 @@ locals {
       source_address_prefix      = "*"
       source_port_range          = "*"
       destination_address_prefix = "*"
-      destination_port_ranges    = ["*"]
+      destination_port_range     = "*"
       protocol                   = "Icmp"
       description                = "允許對外輸出 ICMP 流量"
     }
@@ -53,7 +53,7 @@ locals {
       source_address_prefix      = "*"
       source_port_range          = "*"
       destination_address_prefix = "10.0.0.0/8"
-      destination_port_ranges    = ["*"]
+      destination_port_ranges    = ["0-65535"]
       protocol                   = "Tcp"
       description                = "允許對信任網路輸出 TCP 流量"
     }

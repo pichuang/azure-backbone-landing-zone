@@ -31,11 +31,11 @@ module "vm_jumperbox_prd_jpw_01" {
         }
       }
       diagnostic_settings = {
-        name                  = "diag-metrics"
-        workspace_resource_id = local.jumperbox_prd_jpw_01.log_analytics_workspace_id
-        metric_categories = [
-          "AllMetrics"
-        ]
+        diag_metrics = {
+          name                  = "diag-metrics"
+          workspace_resource_id = local.jumperbox_prd_jpw_01.log_analytics_workspace_id
+          metric_categories     = ["AllMetrics"]
+        }
       }
     }
   }

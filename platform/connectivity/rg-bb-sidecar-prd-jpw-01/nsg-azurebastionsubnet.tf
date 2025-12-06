@@ -34,9 +34,9 @@ locals {
       priority                   = 300
       direction                  = "Inbound"
       access                     = "Allow"
-      source_address_prefix      = "BastionHostCommunication"
+      source_address_prefix      = "VirtualNetwork"
       source_port_range          = "*"
-      destination_address_prefix = "*"
+      destination_address_prefix = "VirtualNetwork"
       destination_port_ranges    = ["8080", "5701"]
       protocol                   = "Tcp"
       description                = "用於 Azure Bastion Host 之間通訊。"
@@ -83,7 +83,7 @@ locals {
     "out-allow-azurecloud" = {
       name                       = "out-allow-azurecloud"
       access                     = "Allow"
-      destination_address_prefix = "AzureCloud.${local.rg_vnet_sidecar_jpw_01.location}"
+      destination_address_prefix = "AzureCloud.japanwest" # AzureCloud.<location>
       destination_port_ranges    = ["443"]
       direction                  = "Outbound"
       priority                   = 300
@@ -91,6 +91,18 @@ locals {
       source_address_prefix      = "*"
       source_port_range          = "*"
       description                = "允許連線至 AzureCloud.${local.rg_vnet_sidecar_jpw_01.location} 進行更新和修補程式下載"
+    }
+    "out-allow-bastionhostcommunication" = {
+      name                       = "out-allow-bastionhostcommunication"
+      access                     = "Allow"
+      destination_address_prefix = "VirtualNetwork"
+      destination_port_ranges    = ["8080", "5701"]
+      direction                  = "Outbound"
+      priority                   = 200
+      protocol                   = "Tcp"
+      source_address_prefix      = "*"
+      source_port_range          = "*"
+      description                = "允許 Azure Bastion Host 之間的 outbound 通訊"
     }
     "out-deny-all-others" = {
       name                       = "out-deny-all-others"
