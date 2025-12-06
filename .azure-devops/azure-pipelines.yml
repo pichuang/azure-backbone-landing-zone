@@ -15,9 +15,6 @@ variables:
 - group: global.prod
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
