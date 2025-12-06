@@ -7,6 +7,7 @@ module "vm_jumperbox_prd_jpw_01" {
   encryption_at_host_enabled = false # TODO
   location                   = local.jumperbox_prd_jpw_01.location
   name                       = "vm-${local.jumperbox_prd_jpw_01.name}"
+  computer_name              = "JMPPRDJPW01"
   resource_group_name        = local.jumperbox_prd_jpw_01.resource_group_name
   zone                       = 1
   os_type                    = "Windows"

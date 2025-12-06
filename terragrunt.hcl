@@ -21,7 +21,11 @@ inputs = merge(
   local.merged_global_vars,
   {
     # 預設 Subscription ID (讓根目錄可執行，子模組會覆寫此值)
-    subscription_id                = "00000000-0000-0000-0000-000000000000"
+    subscription_id = "00000000-0000-0000-0000-000000000000"
+
+    # 根據執行環境切換認證方式：本地 (use_cli) 與遠端 (use_msi)
+    use_cli = get_env("TF_VAR_use_cli", local.use_local_state ? "true" : "false") == "true"
+    use_msi = get_env("TF_VAR_use_msi", local.use_local_state ? "false" : "true") == "true"
   }
 )
 
@@ -80,7 +84,27 @@ provider "azurerm" {
   storage_use_azuread = true
   # 動態讀取子目錄中的 Subscription ID
   subscription_id = var.subscription_id
-  use_msi = true
+  use_msi = var.use_msi
+  use_cli = var.use_cli
+}
+EOF
+}
+
+# 提供 Terragrunt 自動注入的認證開關變數定義，避免子模組缺少變數宣告
+generate "auth_vars" {
+  path      = "zz-terragrunt-auth-vars.tf"
+  if_exists = "overwrite_terragrunt"
+  contents  = <<EOF
+variable "use_cli" {
+  description = "在本地開發時使用 Azure CLI 登入"
+  type        = bool
+  default     = true
+}
+
+variable "use_msi" {
+  description = "在遠端執行時使用受控身分識別登入"
+  type        = bool
+  default     = false
 }
 EOF
 }

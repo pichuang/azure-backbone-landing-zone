@@ -15,9 +15,10 @@ variables:
 - group: global.prod
 
 steps:
-- task: TerraformInstaller@1
+- task: "TerraformInstaller@2"
+  displayName: 'Install Terraform'
   inputs:
-    terraformVersion: 'latest'
+    terraformVersion: '1.13.5'
 
 - script: terraform -version
   displayName: 'Show terraform version'

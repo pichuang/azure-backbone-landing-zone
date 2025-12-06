@@ -1,9 +1,11 @@
 #!/bin/bash
 
-# 使用 Local State
-export TG_LOCAL_STATE=true
-export TF_VAR_use_msi=false
-export TF_VAR_use_cli=true
+# 使用 storage account
+export TG_LOCAL_STATE=false
+export TF_VAR_use_msi=true
+export TF_VAR_use_cli=false
+export ARM_USE_MSI=true
+export ARM_CLIENT_ID="${mi_client_id}"
 
 # 格式化 Terraform 配置文件
 terragrunt run -- fmt --recursive
