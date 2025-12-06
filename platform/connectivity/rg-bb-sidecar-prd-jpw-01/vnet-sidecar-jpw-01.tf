@@ -112,6 +112,9 @@ module "vnet_sidecar_jpw_01" {
       default_outbound_access_enabled               = false
       private_endpoint_network_policies             = "Enabled"
       private_link_service_network_policies_enabled = true
+      network_security_group = {
+        id = module.avm-res-network-networksecuritygroup["nsg-jumperbox"].id
+      }
     }
 
     snet_azurebastionsubnet = {
@@ -120,10 +123,12 @@ module "vnet_sidecar_jpw_01" {
       default_outbound_access_enabled               = false
       private_endpoint_network_policies             = "Enabled"
       private_link_service_network_policies_enabled = true
+      network_security_group = {
+        id = module.avm-res-network-networksecuritygroup["nsg-azurebastionsubnet"].id
+      }
     }
   }
 }
-
 
 #
 # VNet Flow Logs Settings

@@ -14,7 +14,7 @@ variable "log_analytics_workspace_id" {
   type        = string
 }
 
-variable "snet_azurebastionsubnet_id" {
-  description = "請填寫 Azure Bastion Subnet 子網段的 Resource ID"
+variable "snet_jumperbox_id" {
+  description = "請填寫 Azure Jumperbox Subnet 子網段的 Resource ID"
   type        = string
 }
