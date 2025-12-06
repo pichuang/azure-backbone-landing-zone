@@ -499,3 +499,8 @@ resource "azurerm_private_dns_zone" "privatelink_service_signalr_net" {
   name                = "privatelink.service.signalr.net"
   resource_group_name = azurerm_resource_group.rg_private_dns_zones.name
 }
+
+resource "azurerm_private_dns_zone" "bastion_azure_com" {
+  name                = "bastion.azure.com"
+  resource_group_name = azurerm_resource_group.rg_private_dns_zones.name
+}

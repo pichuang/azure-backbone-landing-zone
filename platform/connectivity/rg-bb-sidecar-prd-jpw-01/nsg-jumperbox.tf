@@ -89,11 +89,5 @@ module "nsg_jumperbox" {
       log_analytics_destination_type = "Dedicated"
       workspace_resource_id          = local.sidecar_jpw_01.log_analytics_workspace_id
     }
-    diag_metrics = {
-      name                           = "diag-metrics"
-      metric_categories              = ["AllMetrics"]
-      log_analytics_destination_type = "Dedicated"
-      workspace_resource_id          = local.sidecar_jpw_01.log_analytics_workspace_id
-    }
   }
 }

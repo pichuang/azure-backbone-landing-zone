@@ -38,6 +38,11 @@ module "vnet_sidecar_jpw_01" {
       workspace_resource_id          = local.sidecar_jpw_01.log_analytics_workspace_id
       log_analytics_destination_type = "Dedicated" # Dedicated 就是 AzureDiagnostics
       log_groups                     = ["allLogs"]
+    }
+    diag_metrics = {
+      name                           = "diag-metrics"
+      workspace_resource_id          = local.sidecar_jpw_01.log_analytics_workspace_id
+      log_analytics_destination_type = "Dedicated" # Dedicated 就是 AzureDiagnostics
       metric_categories              = ["AllMetrics"]
     }
   }
