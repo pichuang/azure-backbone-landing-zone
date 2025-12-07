@@ -1,0 +1,27 @@
+#cloud-config
+package_upgrade: true
+packages:
+  - rsyslog
+  - firewalld
+  - policycoreutils-python-utils
+
+write_files:
+  - path: /etc/rsyslog.d/05-input-udp-tcp.conf
+    owner: root:root
+    permissions: '0644'
+    content: |
+      # Load Modules
+      module(load="imudp")
+      module(load="imtcp")
+
+      # Input Listeners (Port 514)
+      input(type="imudp" port="514")
+      input(type="imtcp" port="514")
+
+runcmd:
+  - systemctl start firewalld
+  - systemctl enable firewalld
+  - firewall-cmd --permanent --add-port=514/udp
+  - firewall-cmd --permanent --add-port=514/tcp
+  - firewall-cmd --reload
+  - systemctl restart rsyslog
