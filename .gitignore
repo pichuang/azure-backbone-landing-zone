@@ -72,3 +72,5 @@ provider.tf
 
 # Local Global Config Override
 global.local-dev.hcl
+
+dev/*
