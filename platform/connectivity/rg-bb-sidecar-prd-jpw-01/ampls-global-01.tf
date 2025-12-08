@@ -10,8 +10,8 @@ resource "azurerm_monitor_private_link_scope" "ampls_global_01" {
   name                = local.ampls_global_01.name
   resource_group_name = azurerm_resource_group.rg_vnet_sidecar_jpw_01.name
 
-  ingestion_access_mode = "Open" # Open | PrivateOnly
-  query_access_mode     = "Open" # Open | PrivateOnly
+  ingestion_access_mode = "PrivateOnly" # Open | PrivateOnly
+  query_access_mode     = "PrivateOnly" # Open | PrivateOnly
 }
 
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_private_link_scoped_service
