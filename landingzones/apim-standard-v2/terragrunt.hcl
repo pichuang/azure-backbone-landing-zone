@@ -22,4 +22,5 @@ inputs = {
   subscription_id               = include.root.locals.merged_global_vars.subscription_connectivity_id
   log_soc_prd_jpw_01_workspace_id = dependency.security_log_soc_prd_jpw_01.outputs.log_soc_prd_jpw_01_workspace_id
   primary_location              = include.root.locals.merged_global_vars.primary_location
+  secondary_location            = include.root.locals.merged_global_vars.secondary_location
 }

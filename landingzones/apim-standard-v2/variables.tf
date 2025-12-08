@@ -4,6 +4,11 @@ variable "primary_location" {
   default     = "japanwest"
 }
 
+variable "secondary_location" {
+  description = "請填寫次要部署區域，例如：japaneast"
+  type        = string
+}
+
 variable "subscription_id" {
   description = "請填寫 Azure 訂閱 ID"
   type        = string

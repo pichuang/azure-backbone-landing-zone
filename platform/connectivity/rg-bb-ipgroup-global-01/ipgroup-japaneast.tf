@@ -5,7 +5,7 @@ module "ipg_vhub_azure_jpe_prd" {
 
   resource_group_name = azurerm_resource_group.rg_ipgroup_global_01.name
   location            = azurerm_resource_group.rg_ipgroup_global_01.location
-  name                = "ipg-vhub-azure-jpw-prd"
+  name                = "ipg-vhub-azure-jpe-prd"
   ip_addresses = [
     "10.27.8.0/24",
     "10.27.9.0/24"
