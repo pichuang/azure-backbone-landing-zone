@@ -6,7 +6,7 @@ locals {
     location            = var.primary_location
     tags_connectivity = {
       負責單位 = "網路團隊"
-      環境    = "prd"
+      環境   = "prd"
     }
   }
 }
