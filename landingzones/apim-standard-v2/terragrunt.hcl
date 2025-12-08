@@ -9,7 +9,7 @@ terraform {
 
 # 定義依賴關係
 dependency "security_log_soc_prd_jpw_01" {
-  config_path = "../../security/rg-bb-soc-prd-jpw-01" # 指向 security/rg-bb-soc-prd-jpw-01 的相對路徑
+  config_path = "../../platform/security/rg-bb-soc-prd-jpw-01" # 修正路徑，指向實際的 SOC 模組
 
   # (選用) 設定 mock_outputs，這在尚未部署 log-soc-prd-jpw-01 就要跑 plan 時很重要
   mock_outputs = {

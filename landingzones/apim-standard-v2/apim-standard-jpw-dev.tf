@@ -1,8 +1,3 @@
-resource "azurerm_resource_group" "rg_apim_standard_v2_jpw_dev" {
-  location = var.primary_location
-  name     = "rg-apim-standard-v2-jpw-dev"
-}
-
 module "pip_apim_standard_v2_jpw_dev" {
   source           = "Azure/avm-res-network-publicipaddress/azurerm"
   version          = "0.2.0"
@@ -18,7 +13,6 @@ module "pip_apim_standard_v2_jpw_dev" {
   ip_version              = "IPv4"
   idle_timeout_in_minutes = 4
 }
-
 
 module "vnet_apim_jpw_01" {
   source  = "Azure/avm-res-network-virtualnetwork/azurerm"
@@ -43,20 +37,19 @@ module "vnet_apim_jpw_01" {
   diagnostic_settings = {
     diag_logs = {
       name                           = "diag-logs"
-      workspace_resource_id          = local.sidecar_jpw_01.log_analytics_workspace_id
+      workspace_resource_id          = var.log_soc_prd_jpw_01_workspace_id
       log_analytics_destination_type = "Dedicated" # Dedicated 就是 AzureDiagnostics
       log_groups                     = ["allLogs"]
     }
     diag_metrics = {
       name                           = "diag-metrics"
-      workspace_resource_id          = local.sidecar_jpw_01.log_analytics_workspace_id
+      workspace_resource_id          = var.log_soc_prd_jpw_01_workspace_id
       log_analytics_destination_type = "Dedicated" # Dedicated 就是 AzureDiagnostics
       metric_categories              = ["AllMetrics"]
     }
   }
 
   subnets = {
-
     snet_apim = {
       name                                          = "snet-apim"
       address_prefixes                              = ["10.227.47.0/24"]
@@ -64,7 +57,7 @@ module "vnet_apim_jpw_01" {
       private_endpoint_network_policies             = "Enabled"
       private_link_service_network_policies_enabled = true
       network_security_group = {
-        id = module.nsg_apim.resource_id
+        id = module.nsg_apim_standard_v2.resource_id
       }
     }
   }
@@ -79,12 +72,12 @@ module "apim_standard_v2_jpw_dev" {
   resource_group_name = azurerm_resource_group.rg_apim_standard_v2_jpw_dev.name
   location            = azurerm_resource_group.rg_apim_standard_v2_jpw_dev.location
 
-  sku_name                                = "Standard_V2"
+  sku_name                                = "StandardV2_1"
   publisher_name                          = "Backbone Publisher"
   publisher_email                         = "phil.huang@microsoft.com"
   gateway_disabled                        = false
   public_network_access_enabled           = true
-  public_ip_address_id                    = module.pip_apim_standard_v2_jpw_dev.id
+  public_ip_address_id                    = module.pip_apim_standard_v2_jpw_dev.resource_id
   virtual_network_subnet_id               = module.vnet_apim_jpw_01.subnets["snet_apim"].id
   private_endpoints_manage_dns_zone_group = false
   zones                                   = ["1", "2", "3"] # for compliance with WAF
@@ -99,6 +92,9 @@ module "apim_standard_v2_jpw_dev" {
   }
   sign_up = {
     enabled = false
+    terms_of_service = {
+      enabled = false
+    }
   }
   tenant_access = {
     enabled = true
