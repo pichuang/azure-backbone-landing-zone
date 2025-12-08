@@ -1,16 +1,3 @@
-#
-# 定義 Virtual WAN 資源
-# 包含 Resource Group 及 Virtual WAN 本體
-# 因這個資源是隸屬全球資源, 並沒有特別實體綁區域, 所以名稱為 vwan-prd-global-01
-#
-
-locals {
-  vwan_prd_global_01 = {
-    name                = "vwan-prd-global-01"
-    resource_group_name = "rg-bb-vwan-prd-global-01"
-    location            = var.primary_location
-  }
-}
 
 resource "azurerm_resource_group" "rg_vwan_prd_global_01" {
   name     = local.vwan_prd_global_01.resource_group_name
