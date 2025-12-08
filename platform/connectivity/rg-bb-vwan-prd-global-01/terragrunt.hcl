@@ -34,6 +34,7 @@ dependency "vnet_sidecar_jpw_01_id" {
   config_path = "../rg-bb-sidecar-prd-jpw-01"
   mock_outputs = {
     vnet_sidecar_jpw_01_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mock-rg/providers/Microsoft.Network/virtualNetworks/vnet-sidecar-jpw-01"
+    vnet_id                = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mock-rg/providers/Microsoft.Network/virtualNetworks/vnet-sidecar-jpw-01"
   }
   mock_outputs_allowed_terraform_commands    = ["init", "output", "validate", "plan"]
   mock_outputs_merge_strategy_with_state     = "shallow"
