@@ -8,7 +8,7 @@ locals {
   vwan_prd_global_01 = {
     name                = "vwan-prd-global-01"
     resource_group_name = "rg-bb-vwan-prd-global-01"
-    location            = "japanwest"
+    location            = var.primary_location
   }
 }
 
@@ -27,5 +27,5 @@ resource "azurerm_virtual_wan" "vwan_prd_global_01" {
   allow_branch_to_branch_traffic    = true
   office365_local_breakout_category = "None"
   type                              = "Standard"
-  tags                              = local.tags_connectivity
+  tags                              = local.vwan_prd_global_01.tags_connectivity
 }

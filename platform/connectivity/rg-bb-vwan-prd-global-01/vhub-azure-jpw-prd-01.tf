@@ -5,13 +5,12 @@
 
 locals {
   vhub_azure_jpw_prd_01 = {
-    name                       = "azure-jpw-prd-01"
+    name                       = "azure-jpw-prd"
     location                   = "japanwest"
     address_prefix             = "10.227.0.0/23" # 正式需要使用 /23
     vhub_capacity              = 2               # 2 ~ 50
     ergw_scale_units           = 1               # 1 ~ 10
     azfw_public_ip_count       = 1               # 1 ~ 249
-    zones                      = ["1", "2", "3"]
     dnspr_inbound_ip           = "10.227.2.4"
     log_analytics_workspace_id = var.log_soc_prd_jpw_01_workspace_id
   }
@@ -46,7 +45,7 @@ resource "azurerm_virtual_hub" "vhub_azure_jpw_prd_01" {
   virtual_router_auto_scale_min_capacity = local.vhub_azure_jpw_prd_01.vhub_capacity
   hub_routing_preference                 = "ASPath"
   sku                                    = "Standard"
-  tags                                   = local.tags_connectivity
+  tags                                   = local.vwan_prd_global_01.tags_connectivity
 }
 
 #
@@ -80,10 +79,10 @@ resource "azurerm_firewall" "afw_azure_jpw_prd_01" {
     public_ip_count = local.vhub_azure_jpw_prd_01.azfw_public_ip_count
   }
 
-  zones              = local.vhub_azure_jpw_prd_01.zones
+  zones              = ["1", "2", "3"]
   firewall_policy_id = var.afwp_azure_jpw_prod_01_id
 
-  tags = local.tags_connectivity
+  tags = local.vwan_prd_global_01.tags_connectivity
 }
 
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_routing_intent

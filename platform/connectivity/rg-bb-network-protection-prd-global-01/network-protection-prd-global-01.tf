@@ -2,7 +2,7 @@ locals {
   network_protection_prd_global_01 = {
     name                = "network-protection-prd-global-01"
     resource_group_name = "rg-bb-network-protection-prd-global-01"
-    location            = "japanwest"
+    location            = var.primary_location
   }
 }
 
