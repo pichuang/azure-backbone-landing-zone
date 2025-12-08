@@ -69,6 +69,10 @@ terraform {
       source  = "hashicorp/azurerm"
       version = ">= 4.0.0"
     }
+    azapi = {
+      source  = "azure/azapi"
+      version = "~> 2.0"
+    }
   }
 }
 provider "azurerm" {
@@ -86,6 +90,12 @@ provider "azurerm" {
   subscription_id = var.subscription_id
   use_msi = var.use_msi
   use_cli = var.use_cli
+}
+provider "azapi" {
+  # Align azapi to the same subscription and auth switches as azurerm to avoid cross-subscription drifts
+  subscription_id = var.subscription_id
+  use_msi         = var.use_msi
+  use_cli         = var.use_cli
 }
 EOF
 }

@@ -77,8 +77,8 @@ module "nsg_jumperbox" {
   source              = "Azure/avm-res-network-networksecuritygroup/azurerm"
   version             = "0.5.0"
   enable_telemetry    = false
-  resource_group_name = local.rg_vnet_sidecar_jpw_01.resource_group_name
-  location            = local.rg_vnet_sidecar_jpw_01.location
+  resource_group_name = azurerm_resource_group.rg_vnet_sidecar_jpw_01.name
+  location            = azurerm_resource_group.rg_vnet_sidecar_jpw_01.location
   name                = "nsg-jumperbox"
   security_rules      = local.nsg_rules_jumperbox
 
