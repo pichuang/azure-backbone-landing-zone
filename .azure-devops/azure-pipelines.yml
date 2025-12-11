@@ -39,5 +39,8 @@ steps:
       root: '$(System.DefaultWorkingDirectory)'
       sources: 'global.prod.hcl'
 
+  - script: export ARM_CLIENT_ID=$(mi_client_id)
+    displayName: 'Setup User Assigned Managed Identity Client ID'
+
   - script: bash 0-terragrunt-local-dev-plan.sh
     displayName: 'Run terragrunt local dev plan'
