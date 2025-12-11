@@ -36,4 +36,18 @@
     sh ./2-terragrunt-local-dev-destroy.sh
     ```
 
+## 使用 User Assign Identity
+1. 調整 0-terragrunt-local-dev-plan.sh 參數
+    ```bash
+    export TF_VAR_use_msi=true
+    export TF_VAR_use_cli=false
+    ```
+2. 設定 User Assigned Identity ID
+    ```bash
+    export ARM_CLIENT_ID=<your_User_Assigned_Identity_Client_ID>
+    ```
+3. 執行 Terragrunt Plan 確認狀態
 
+    ```bash
+    sh ./0-terragrunt-local-dev-plan.sh
+    ```
